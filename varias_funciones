@@ -1,0 +1,125 @@
+import numpy as np
+import math
+
+x0 = math.pi / 4
+x1 = math.pi / 3
+h = x1 - x0
+
+def coseno(x):
+    return math.cos(x)
+
+def seno(x):
+    return math.sin(x)
+
+def exponencial(x):
+    return math.exp(x)
+
+def logaritmica(x):
+    return math.log(x)
+
+# Definir las derivadas de cada función
+def derivada_cos(x):
+    return -math.sin(x)
+
+def segunda_derivada_cos(x):
+    return -math.cos(x)
+
+def tercera_derivada_cos(x):
+    return math.sin(x)
+
+def cuarta_derivada_cos(x):
+    return math.cos(x)
+
+def derivada_sen(x):
+    return math.cos(x)
+
+def segunda_derivada_sen(x):
+    return -math.sin(x)
+
+def tercera_derivada_sen(x):
+    return -math.cos(x)
+
+def cuarta_derivada_sen(x):
+    return math.sin(x)
+
+def derivada_exp(x):
+    return math.exp(x)
+
+def segunda_derivada_exp(x):
+    return math.exp(x)
+
+def tercera_derivada_exp(x):
+    return math.exp(x)
+
+def cuarta_derivada_exp(x):
+    return math.exp(x)
+
+def derivada_log(x):
+    return 1 / x
+
+def segunda_derivada_log(x):
+    return -1 / x**2
+
+def tercera_derivada_log(x):
+    return 2 / x**3
+
+def cuarta_derivada_log(x):
+    return -6 / x**4
+
+# Función para calcular las aproximaciones usando serie de Taylor hasta la cuarta derivada
+def aproximacion_taylor(f0, df1, df2, df3, df4, h):
+    return f0 + df1 * h + (df2 * h**2) / 2 + (df3 * h**3) / 6 + (df4 * h**4) / 24
+
+# Calcular los valores de cada función y sus derivadas en x0
+f_cos_x0 = coseno(x0)
+f_sen_x0 = seno(x0)
+f_exp_x0 = exponencial(x0)
+f_log_x0 = logaritmica(x0)
+
+# Derivadas en x0
+df_cos_x0 = derivada_cos(x0)
+df_sen_x0 = derivada_sen(x0)
+df_exp_x0 = derivada_exp(x0)
+df_log_x0 = derivada_log(x0)
+
+# Segundas derivadas
+d2f_cos_x0 = segunda_derivada_cos(x0)
+d2f_sen_x0 = segunda_derivada_sen(x0)
+d2f_exp_x0 = segunda_derivada_exp(x0)
+d2f_log_x0 = segunda_derivada_log(x0)
+
+# Terceras derivadas
+d3f_cos_x0 = tercera_derivada_cos(x0)
+d3f_sen_x0 = tercera_derivada_sen(x0)
+d3f_exp_x0 = tercera_derivada_exp(x0)
+d3f_log_x0 = tercera_derivada_log(x0)
+
+# Cuartas derivadas
+d4f_cos_x0 = cuarta_derivada_cos(x0)
+d4f_sen_x0 = cuarta_derivada_sen(x0)
+d4f_exp_x0 = cuarta_derivada_exp(x0)
+d4f_log_x0 = cuarta_derivada_log(x0)
+
+# Calcular las aproximaciones de Taylor en x1
+aprox_cos = aproximacion_taylor(f_cos_x0, df_cos_x0, d2f_cos_x0, d3f_cos_x0, d4f_cos_x0, h)
+aprox_sen = aproximacion_taylor(f_sen_x0, df_sen_x0, d2f_sen_x0, d3f_sen_x0, d4f_sen_x0, h)
+aprox_exp = aproximacion_taylor(f_exp_x0, df_exp_x0, d2f_exp_x0, d3f_exp_x0, d4f_exp_x0, h)
+aprox_log = aproximacion_taylor(f_log_x0, df_log_x0, d2f_log_x0, d3f_log_x0, d4f_log_x0, h)
+
+# Valores reales en x1
+f_cos_x1 = coseno(x1)
+f_sen_x1 = seno(x1)
+f_exp_x1 = exponencial(x1)
+f_log_x1 = logaritmica(x1)
+
+# Calcular el error
+error_cos = abs(f_cos_x1 - aprox_cos)
+error_sen = abs(f_sen_x1 - aprox_sen)
+error_exp = abs(f_exp_x1 - aprox_exp)
+error_log = abs(f_log_x1 - aprox_log)
+
+# Mostrar resultados con error
+print("--COSENO--\nSe desea conocer:", f_cos_x1,"\nAproximación coseno:", aprox_cos,  "\nError:", error_cos)
+print( "--SENO--\nSe desea conocer:", f_sen_x1,"\nAproximación seno:", aprox_sen,"\nError:", error_sen)
+print("--EXPONENCIAL--\nSe desea conocer:", f_exp_x1,"\nAproximación exponencial:",aprox_exp,  "\nError:", error_exp)
+print("--LOGARITMICA--\nSe desea conocer:", f_log_x1,"\nAproximación logaritmo:", aprox_log,  "\nError:", error_log)
